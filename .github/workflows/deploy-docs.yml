@@ -20,7 +20,10 @@ jobs:
       - name: 安装 pnpm
         uses: pnpm/action-setup@v2
         with:
-          run_install: true
+          version: 8
+
+      - name: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: 设置 Node.js
         uses: actions/setup-node@v3
