@@ -5,11 +5,9 @@ export default defineUserConfig({
   base: "/Lin-Note-v3/",
 
   lang: "zh-CN",
-  title: "博客演示",
-  description: "vuepress-theme-hope 的博客演示",
-
+  title: "Lin-Note",
+  description: "Lin-Note 的个人博客",
   theme,
-
   // Enable it with pwa
   // shouldPrefetch: false,
 });

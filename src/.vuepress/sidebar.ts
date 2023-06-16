@@ -34,4 +34,13 @@ export default sidebar({
       children: "structure",
     },
   ],
+  "/基础入门/": [
+    {
+      text: "基础入门",
+      icon: "laptop-code",
+      prefix: "",
+      link: "",
+      children: "structure",
+    },
+  ],
 });
