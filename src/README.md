@@ -9,23 +9,23 @@ actions:
   - text: 开始阅读
     link: /基础-进阶/基础/
     type: primary
-  - text: 学习圈子💡
+  - text: 前端面试💡
     link: /基础-进阶/基础/
     type: primary
 features:
-  - title: 经典计算机书籍
-    icon: book-bookmark
-    details: 精心整理 200 本经典计算机书籍
-    link: https://github.com/Tyson0314/java-books
+  - title: 经典前端书籍
+    icon: animation
+    details: 精心整理 10 多本经典前端书籍
+    link: https://github.com/arronf2e/FE-Books
   - title: Leetcode 算法笔记
-    icon: book
+    icon: note
     details: 超级好用的 Leetcode 算法笔记
-    link: learning-resources/leetcode-note.html
+    link: https://github.com/afatcoder/LeetcodeTop
 ---
 
 ## 面试手册电子版
 
-本网站所有内容已经汇总成**PDF电子版**，**PDF电子版**在我的[**学习圈**](zsxq/introduce.md)可以获取~
+本网站所有内容已经汇总成 **PDF电子版**，**PDF电子版** 在我的 [**公众号**]() 可以获取~
 
 
 ## 参与贡献

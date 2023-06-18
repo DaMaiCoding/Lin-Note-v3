@@ -13,15 +13,17 @@ export default hopeTheme({
     url: "https://mrhope.site",
   },
 
-  iconAssets: "fontawesome-with-brands",
+  iconAssets: "iconfont",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
+  repo: "Jackie-Lin/Lin-Note-v3",
 
   docsDir: "src",
 
   navbar,
 
   sidebar,
+
+  logo: "/icon.png",
 
   footer: "用心去做高质量的专业前端内容网站",
   fullscreen: true,
