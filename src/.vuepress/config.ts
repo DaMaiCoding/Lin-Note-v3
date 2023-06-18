@@ -4,15 +4,14 @@ import theme from "./theme.js";
 
 export default defineUserConfig({
   base: "/Lin-Note-v3/",
-
   lang: "zh-CN",
   title: "Lin-Note",
   description: "Lin-Note 的个人博客",
   plugins: [
     docsearchPlugin({
-      apiKey: "3a85cbd6daeec08cdce4271270b8e630",
-      appId: "7BWNSXABAD",
-      indexName: "prod_NAME",
+      apiKey: "da938ec88eb5a537379740e67ed5a2d1",
+      appId: "3ZBFW1OMA7",
+      indexName: "dev_search",
       searchParameters: {
         attributesToSnippet: ["lvl1:30", "content:25"],
       },
