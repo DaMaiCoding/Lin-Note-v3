@@ -23,7 +23,7 @@ export default hopeTheme({
 
   sidebar,
 
-  logo: "/icon.png",
+  logo: "/icon.svg",
 
   footer: "用心去做高质量的专业前端内容网站",
   fullscreen: true,

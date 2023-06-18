@@ -4,7 +4,7 @@ export default navbar([
   "/",
   {
     text: "基础-进阶",
-    icon: "code",
+    icon: "safe",
     prefix: "/基础-进阶/",
     children: [
       {
@@ -53,7 +53,7 @@ export default navbar([
   },
   {
     text: "后端开发",
-    icon: "object",
+    icon: "mysql",
     prefix: "/后端开发/",
     children: [
       {

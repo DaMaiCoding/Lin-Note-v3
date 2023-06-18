@@ -4,7 +4,7 @@ export default sidebar({
   "/基础-进阶/": [
     {
       text: "基础-进阶",
-      icon: "code",
+      icon: "safe",
       prefix: "",
       link: "",
       children: "structure",
@@ -54,5 +54,5 @@ export default sidebar({
       link: "",
       children: "structure",
     },
-  ]
+  ],
 });
