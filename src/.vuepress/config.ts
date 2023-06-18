@@ -7,6 +7,11 @@ export default defineUserConfig({
   lang: "zh-CN",
   title: "Lin-Note",
   description: "Lin-Note 的个人博客",
+  head: [
+    [
+      'link', { rel: 'icon', href: '/icon.png'}
+    ]
+  ],
   plugins: [
     docsearchPlugin({
       apiKey: "da938ec88eb5a537379740e67ed5a2d1",
