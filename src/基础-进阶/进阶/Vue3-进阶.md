@@ -8,7 +8,7 @@ Vue2 是 Options API, Vue3 是 Composition API
 
 最主要的区别在于 Options API 写的是比较松散, 而 Compostion API 是比较集中的
 
-![folder component after](./assets/Vue3 进阶/composition-api-after.e3f2c350.png)
+![folder component after](./assets/Vue3-进阶/composition-api-after.e3f2c350.png)
 
 
 
@@ -354,7 +354,7 @@ let person = reactive('sad')
 
 如果你用 ref 去绑定对象或者 数组等复杂的数据类型, 我们看源码里面其实也是可以去调用 reactive
 
-使用 reactive 去修改无需使用 .value
+使用 reactive 去修改无需使用 `.value`
 
 reactive 基本用法
 
@@ -820,7 +820,7 @@ beforeDestroy 改为 beforeUnmounted
 
 **选项式 API 的生命周期, 及钩子函数 (钩子函数就是在 生命周期前面 加上 `on` 而已)**
 
-![image-20230227213040278](./assets/Vue3 进阶/image-20230227213040278.png)		
+![image-20230227213040278](./assets/Vue3-进阶/image-20230227213040278.png)		
 
 
 
@@ -828,7 +828,7 @@ beforeDestroy 改为 beforeUnmounted
 
 ### globalProperties
 
-由于[Vue3](https://so.csdn.net/so/search?q=Vue3&spm=1001.2101.3001.7020) 没有Prototype 属性 使用 app.config.globalProperties 代替 然后去定义变量和函数
+由于[Vue3](https://so.csdn.net/so/search?q=Vue3&spm=1001.2101.3001.7020) 没有Prototype 属性 使用 `app.config.globalProperties` 代替 然后去定义变量和函数
 
 
 
@@ -1762,7 +1762,7 @@ const vMove: Directive = {
 
 我们可以通过 组件生命周期钩子, args 获取到传进来 background、flag 等数据
 
-![image-20230404104656654](./assets/Vue3 进阶/image-20230404104656654.png)
+![image-20230404104656654](./assets/Vue3-进阶/image-20230404104656654.png)
 
 
 
@@ -1775,13 +1775,13 @@ const vMove: Directive = {
 第二个 binding
 
 - instance：使用指令的组件实例
-- value：传递给指令的值。例如，在 v-my-directive = "1 + 1" 中，该值为 2
+- value：传递给指令的值。例如，在 `v-my-directive = "1 + 1"` 中，该值为 2
 - oldValue：先前的值，仅在 beforeUpdate 和 updated 中可用。无论值是否有更改都可用
 - arg：传递给指令的参数 (如果有的话)。例如在 v-my-directive:foo 中，arg 为 "foo"
-- modifiers：包含修饰符(如果有的话) 的对象。例如在 v-my-directive.foo.bar 中，修饰符对象为 {foo: true，bar: true}
+- modifiers：包含修饰符(如果有的话) 的对象。例如在 v-my-directive.foo.bar 中，修饰符对象为 `{foo: true，bar: true}`
 - dir：一个对象，在注册指令时作为参数传递。例如，在以下指令中
 
-![image-20230404151249189](./assets/Vue3 进阶/image-20230404151249189.png)
+![image-20230404151249189](./assets/Vue3-进阶/image-20230404151249189.png)
 
 
 
@@ -2138,7 +2138,7 @@ export default function (options: Options): Promise<{ baseUrl: string }> {
 
 ### 目录结构
 
-![image-20230405011551178](./assets/Vue3 进阶/image-20230405011551178.png)		
+![image-20230405011551178](./assets/Vue3-进阶/image-20230405011551178.png)		
 
 
 
@@ -2277,50 +2277,13 @@ app.mount('#app')
 
 
 
-
-
-
-
-
-
-## 编程风格
-
-### Template 风格
-
-```vue
-```
-
-
-
-
-
-### TSX 风格
-
-
-
-
-
-
-
-### 函数式编程
-
-
-
-
-
-
-
-
-
-
-
 ## 性能优化
 
 ### 分析工具
 
 打开浏览器的调试工具, 选择 Lighthouse, 点击分析网页加载情况即可, 进行分析
 
-![image-20230403170734490](./assets/Vue3 进阶/image-20230403170734490.png)
+![image-20230403170734490](./assets/Vue3-进阶/image-20230403170734490.png)
 
 
 
@@ -2360,7 +2323,7 @@ TBT（Total Blocking Time）
 
 
 
-![image-20230403171021450](./assets/Vue3 进阶/image-20230403171021450.png)
+![image-20230403171021450](./assets/Vue3-进阶/image-20230403171021450.png)
 
 
 
@@ -2387,7 +2350,7 @@ plugins: [vue(), vueJsx(),visualizer({
 
 然后进行npm run build打包
 
-![img](./assets/Vue3 进阶/5f5bab17064c4b369310dc181752cc7c.png)
+![img](./assets/Vue3-进阶/5f5bab17064c4b369310dc181752cc7c.png)
 
 可以从中判断, 那个包比较大, 看看能否按需引入, 从而减少包体积
 
@@ -2459,7 +2422,7 @@ VitePWA({
 
 
 
-进行 npm run build 打包会生成 sw.js
+进行 `npm run build` 打包会生成 sw.js
 
 
 
@@ -2509,7 +2472,7 @@ import lazyPlugin from 'vue3-lazy'
 
 但是骨架屏模板需要自己去画的, 比如 element-ui 提供的骨架屏
 
-![image-20230403212009878](./assets/Vue3 进阶/image-20230403212009878.png)
+![image-20230403212009878](./assets/Vue3-进阶/image-20230403212009878.png)
 
 ```vue
 <template>
@@ -2584,7 +2547,7 @@ worker.terminate();
 
 
 
-![image-20230403183807394](./assets/Vue3 进阶/image-20230403183807394.png)
+![image-20230403183807394](./assets/Vue3-进阶/image-20230403183807394.png)
 
 
 
@@ -2598,7 +2561,7 @@ worker.terminate();
 
 
 
-![image-20230403183714395](./assets/Vue3 进阶/image-20230403183714395.png)
+![image-20230403183714395](./assets/Vue3-进阶/image-20230403183714395.png)
 
 
 
@@ -3014,13 +2977,13 @@ BEM (block element modify) --- 块 元素 修饰
 
 1. 绝对长度
 
-![image-20230509223750985](./assets/Vue3 进阶/image-20230509223750985-1683643073080-1.png)
+![image-20230509223750985](./assets/Vue3-进阶/image-20230509223750985-1683643073080-1.png)
 
 
 
 2. 相对长度
 
-![image-20230509223900679](./assets/Vue3 进阶/image-20230509223900679-1683643142256-3.png)
+![image-20230509223900679](./assets/Vue3-进阶/image-20230509223900679-1683643142256-3.png)
 
 
 
@@ -3114,7 +3077,7 @@ app 里面是没有 `scoped`，因为 app.vue 的样式是全局生效的
 
 **目录结构 ( Layout 布局的结构 )**
 
-![image-20230511224559181](./assets/Vue3 进阶/image-20230511224559181.png)		
+![image-20230511224559181](./assets/Vue3-进阶/image-20230511224559181.png)		
 
 
 

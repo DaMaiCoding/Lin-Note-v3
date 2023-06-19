@@ -176,17 +176,17 @@ p {
 
 **选择器 (11种)**
 
-- 通配符选择器 ( * {...} )
-- 标签选择器 ( p {...} )
-- 类选择器 (.class {...} )
-- id 选择器 ( #id {...} )
-- 属性选择器 ( [title=“Lin”] {...} ), title=“Lin” 的所有元素设置样式
-- 并集选择器 ( span, div, .content {...} )
-- 后代选择器 ( div p {...} )
-- 子代选择器 ( div>p {...} )
-- 兄弟选择器 ( h1 + p {...} )
-- 伪类选择器 ( :hover {...} )
-- 伪对象选择器 ( :before {...} )
+- 通配符选择器 ( `* {...}` )
+- 标签选择器 ( `p {...}` )
+- 类选择器 (`.class {...}` )
+- id 选择器 ( `#id {...}` )
+- 属性选择器 ( `[title=“Lin”] {...}` ), `title=“Lin”` 的所有元素设置样式
+- 并集选择器 ( `span, div, .content {...}` )
+- 后代选择器 ( `div p {...}` )
+- 子代选择器 ( `div>p {...}` )
+- 兄弟选择器 ( `h1 + p {...}` )
+- 伪类选择器 ( `:hover {...}` )
+- 伪对象选择器 ( `:before {...}` )
 
 
 
@@ -213,7 +213,7 @@ p {
 - 永远不要在你的插件中使用 `!important` 
 - 永远不要在全站范围的 CSS 代码中使用 `!important` 优先级的比较指的是相同的样式属性，不同样式属性优先级比较失效
 - 比如：在设置`max-width`时注意，已经给元素的`max-width`设置了`!important`但是还不生效，很有可能就是被 width 覆盖了 
-- 举例：`div`最终的宽度还是`200px` div { max-width: 400px !important; height: 200px;background-color: tomato; width: 200px; }
+- 举例：`div`最终的宽度还是`200px` `div { max-width: 400px !important; height: 200px;background-color: tomato; width: 200px; }`
 
 
 
@@ -435,9 +435,9 @@ display:block;/*确保该元素是一个块级元素*/
 
 **2. position (元素已知宽度)**
 
-父元素设置为：position: relative;
+父元素设置为：`position: relative`;
 
-子元素设置为：position: absolute;
+子元素设置为：`position: absolute`;
 
 距上50%，据左50%，然后减去元素自身宽度的一半距离就可以实现
 
@@ -630,9 +630,9 @@ left，right，top，bottom为0，maigin：auto
 
 BFC 的作用: 内部元素 不影响 外部元素
 
-- position: absolute 或 fixed
-- display: inline-block、table、flex
-- float: 不为 none
+- `position: absolute` 或 `fixed`
+- `display: inline-block`、`table`、`flex`
+- `float:` 不为 `none`
 
 
 
