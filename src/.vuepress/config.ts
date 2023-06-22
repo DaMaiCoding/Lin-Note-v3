@@ -7,16 +7,12 @@ export default defineUserConfig({
   lang: "zh-CN",
   title: "Lin-Note",
   description: "Lin-Note 的个人博客",
-  head: [
-    [
-      'link', { rel: 'icon', href: '/icon.png'}
-    ]
-  ],
+  head: [["link", { rel: "icon", href: "/icon.png" }]],
   plugins: [
     docsearchPlugin({
-      apiKey: "da938ec88eb5a537379740e67ed5a2d1",
-      appId: "3ZBFW1OMA7",
-      indexName: "dev_search",
+      apiKey: "0653977195a6a8b62633b04519beef0c",
+      appId: "4D6IDNIAVE",
+      indexName: "lin--v3",
       searchParameters: {
         attributesToSnippet: ["lvl1:30", "content:25"],
       },
