@@ -706,15 +706,17 @@ for (let i = 0; i < 10; i++) {
 ```javascript
 // 函数作为返回值
 function create() {
-    const a = 100
+    let a = 100
     return function () {
+        a += 1
         console.log(a)
     }
 }
 
 // const fn = create()
-// const a = 200
-// fn() // 100
+// fn() // 101
+// fn() // 102
+// fn() // 103
 
 // 函数作为参数被传递
 function print(fn) {

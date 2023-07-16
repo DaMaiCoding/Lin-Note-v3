@@ -5,8 +5,96 @@
 Map 与 Object
 
 - Map 有序结构, key 任意类型; Object 无序结构, key 两种类型 (String、Symbol)
-- Set 可以自动去重
+- Set 可以自动去重 (很多去重方法比较快的)
 - Map 和 Set 比 Object Array 整体要执行更快
+
+
+
+Map 与 Set 不同
+
+- 初始化需要的值不一样，Map 需要的是一个二维数组，而 Set 需要的是一维 Array 数组
+
+```javascript
+let map = new Map([['user', '小如'], ['num', 99]])
+console.log(map) // Map(2) {'user' => '小如', 'num' => 99}
+
+let set = new Set([1,2,3,4,5,6])
+console.log(set) // Set(6) {1, 2, 3, 4, 5, 6}
+```
+
+- Map 的键是不能修改，但是键对应的值是可以修改的；Set 不能通过迭代器来改变 Set 的值，因为 Set 的值就是键
+- Map 是键值对的存在，值也不作为健；而 Set 没有 value 只有 key，value 就是 key
+
+
+
+Map 与 Set 相同
+
+- Map 和 Set 都不允许键重复
+
+
+
+Map、Set 的主要语法有哪些？
+
+都有的语法是 `add`、`has`、`delete`
+
+
+
+Map 的基本使用
+
+```javascript
+//初始化`Map`需要一个二维数组(请看 Map 数据结构)，或者直接初始化一个空`Map` 
+let map = new Map();
+
+//添加key和value值
+map.set('Amy','女')
+map.set('liuQi','男')
+
+//是否存在key，存在返回true,反之为false
+map.has('Amy') //true
+map.has('amy') //false
+
+//根据key获取value
+map.get('Amy') //女
+
+//删除 key为Amy的value
+map.delete('Amy')
+map.get('Amy') //undefined  删除成功
+```
+
+
+
+Set 的基本使用
+
+```javascript
+//初始化一个Set ，需要一个Array数组，要么空Set
+var set = new Set([1,2,3,5,6]) 
+console.log(set)  // {1, 2, 3, 5, 6}
+
+//添加元素到Set中
+set.add(7) //{1, 2, 3, 5, 6, 7}
+
+//删除Set中的元素
+set.delete(3) // {1, 2, 5, 6, 7}
+
+//检测是否含有此元素，有为true，没有则为false
+set.has(2) //true
+```
+
+
+
+使用 Set 去重
+
+```javascript
+var arr=[1,3,4,2,5,1,4]
+// 这里原本是一个对象用了es6的语法 转化成了数组，就是转化数组之前已经过滤掉了重复的元素了
+var arr2=[...new Set(arr)] //[1,3,4,2,5]
+```
+
+
+
+> **[注]**
+>
+> Map、Set 数据结构都是 ES6 语法
 
 
 
@@ -289,7 +377,7 @@ console.log('姓名' + this.name)
 
 **区别**
 
-- var 是 ES5 语法, let const 是 ES6 语法, 没有变量提升; var 有变量提升
+- var 是 ES5 语法, let const 是 ES6 语法, “没有变量提升”；var 有变量提升
 - var 和 let 是变量. 可修改; const 是常量, 不可修改
 - let const 有块级作用域, var 没有
 
@@ -320,6 +408,48 @@ for (let i = 0; i < 10; i++) {
 }
 console.log(i, j) // 报错
 ```
+
+
+
+**暂时性死区**
+
+```javascript
+const randomValue = 21
+
+function getInfo() {
+  console.log(randomValue)
+  const randomValue = "Lydia Hallie"
+}
+
+getInfo() // Uncaught ReferenceError: Cannot access 'randomValue' before initialization
+```
+
+为什么会这样，因为 let const 与 var 有类似的 “变量提升”，但是 var 不同的是其执行上下文的创建阶段，只会创建变量，而不会被初始化 (即定义为 `ndefined`)
+
+并且 ES6 规定了其初始化过程中是执行上下文的执行阶段才被初始化，未被初始化，会报错 (`initialization`)
+
+
+
+**重复声明**
+
+```javascript
+var a = 233
+var a = 322
+
+let a = 233
+let a = 322
+
+// Uncaught SyntaxError: Identifier 'a' has already been declared
+
+const a = 233
+const a = 322
+
+// Uncaught SyntaxError: Identifier 'a' has already been declared
+```
+
+var 可以重复声明，而 let const 重复声明会报（已经变量已经声明）的错误！
+
+
 
 
 
@@ -1007,7 +1137,7 @@ animate()
 2. 箭头函数
 3. 新的数组、对象操作 API
 4. 解构, 可以避免在对象赋值时产生中间变量
-5. 扩展 [...arr]
+5. 扩展运算符 [...arr]
 6. 类 class
 7. 迭代器
 8. 装饰器
@@ -1056,6 +1186,38 @@ console.log(4)
 > await 后面是一个普通函数的话, 返回的就是普通函数的返回值
 >
 > [理解 JavaScript 的 async/await](https://www.nowcoder.com/discuss/353148496452722688?sourceSSR=users)
+
+
+
+**扩展运算符**
+
+错误实例
+
+```javascript
+function getItems(fruitList, ...args, favoriteFruit) {
+  return [...fruitList, ...args, favoriteFruit]
+}
+
+getItems(["banana", "apple"], "pear", "orange") // SyntaxError
+```
+
+
+
+错误所在
+
+`... args`是剩余参数，剩余参数的值是一个包含所有剩余参数的数组，**并且只能作为最后一个参数**。上述示例中，剩余参数是第二个参数，这是不可能的，并会抛出语法错误
+
+
+
+正确的使用方法，`...args`，扩展运算符只能放在最后的参数，用来接收剩余的参数
+
+```javascript
+function getItems(fruitList, favoriteFruit, ...args) {
+  return [...fruitList, ...args, favoriteFruit];
+}
+
+getItems(["banana", "apple"], "pear", "orange"); // [ 'banana', 'apple', 'orange', 'pear' ]
+```
 
 
 
@@ -1694,6 +1856,108 @@ export const age=21;
     console.log(b.age)
  </script>
 ```
+
+
+
+## 63. new fn 与 new fn() 的区别？
+
+在没有参数的情况下，两者的意义是一样的
+
+后者是前者的简写
+
+
+
+## 64. 前端递增、后端递增 区别？
+
+前端递增、后端递增 单独一行，没区别，直接执行
+
+```javascript
+let num = 10;
+num++ // 11
+++num // 12
+```
+
+
+
+当然如果，加入函数或者其他就有所不同了
+
+```javascript
+let num = 10;
+console.log(num++) // 10
+console.log(++num) // 12
+---------------------------------------------
+let num = 10;
+console.log(++num) // 11
+console.log(++num) // 12
+---------------------------------------------
+let num = 10;
+console.log(++num) // 11
+console.log(num++) // 11
+```
+
+
+
+复杂一点的例子
+
+```javascript
+var a = 10;
+++a;// ++a 11,a = 11
+var b = ++a + 2;// ++a 12,a = 12
+console.log(b);//14
+
+var c = 10;
+c++; // c++ 11 , c = 11
+var d = c++ + 2 //c++ 11, c = 12
+console.log(d);//13
+
+var e = 10;
+var f = e++ + ++e;// e++ 10, e = 11,++e 12 , e = 12
+console.log(f);//22
+//后置自增，先表达式返回原值 ， 后面变量再自加1
+```
+
+
+
+## 65. require 和 import 之间的区别
+
+```javascript
+// index.js
+console.log("running index.js");
+import { sum } from "./sum.js";
+console.log(sum(1, 2));
+
+// sum.js
+console.log("running sum.js");
+export const sum = (a, b) => a + b;
+
+// running sum.js, running index.js, 3
+```
+
+
+
+`import`命令是编译阶段执行的，在代码运行之前。因此这意味着被导入的模块会先运行，而导入模块的文件会后执行
+
+
+
+这是 CommonJS 中`require（）`和`import`之间的区别。使用`require()`，您可以在运行代码时根据需要加载依赖项。 如果我们使用`require`而不是`import`，`running index.js`，`running sum.js`，`3`会被依次打印。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
