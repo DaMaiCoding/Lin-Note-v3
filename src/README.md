@@ -10,7 +10,7 @@ actions:
     link: /基础-进阶/基础/
     type: primary
   - text: 前端面试✨
-    link: /基础-进阶/基础/
+    link: /前端面试题/基础面试题/
     type: primary
 features:
   - title: 经典前端书籍
