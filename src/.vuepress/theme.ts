@@ -8,10 +8,10 @@ const MR_HOPE_AVATAR =
 export default hopeTheme({
   hostname: "https://mister-hope.github.io",
 
-  author: {
-    name: "Mr.Lin",
-    url: "https://mrhope.site",
-  },
+  // author: {
+  //   name: "Mr.Lin",
+  //   url: "https://mrhope.site",
+  // },
 
   iconAssets: "iconfont",
 

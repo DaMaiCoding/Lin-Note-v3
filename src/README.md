@@ -21,16 +21,19 @@ features:
     icon: note
     details: 超级好用的 Leetcode 算法笔记
     link: https://github.com/afatcoder/LeetcodeTop
+footer: "Apache-2.0 Licensed | Copyright © 2023
+  <br>
+  <a href='https://beian.miit.gov.cn' target='_blank' style='color: var(--c-text-lighter);'>粤ICP备2023096639号-1</a>"
+footerHtml: true
 ---
 
 ## 面试手册电子版
 
-本网站所有内容已经汇总成 **PDF电子版**，**PDF电子版** 在我的 [**公众号**]() 可以获取~
-
+本网站所有内容已经汇总成 **PDF 电子版**，**PDF 电子版** 在我的 [**公众号**]() 可以获取~
 
 ## 参与贡献
 
 1. 如果您对本项目有任何建议或发现文中内容有误的，欢迎提交 issues 进行指正
 2. 对于文中我没有涉及到知识点，欢迎提交 PR
 3. 如果您有文章推荐请以 markdown 格式到邮箱 `1351123861@qq.com`
-[中文技术文档的写作规范指南](https://github.com/ruanyf/document-style-guide)
+   [中文技术文档的写作规范指南](https://github.com/ruanyf/document-style-guide)
