@@ -6,7 +6,7 @@ export default defineUserConfig({
   base: "/Lin-Note-v3/", // 用于打包到 github action
   // base: "/", // 这里是要打包到服务器上的配置
   lang: "zh-CN",
-  title: "坡罗斜",
+  title: "Lin-Note",
   description: "Lin-Note 的个人博客",
   head: [["link", { rel: "icon", href: "/icon.png" }]],
   plugins: [
