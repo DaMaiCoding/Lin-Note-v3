@@ -16,7 +16,7 @@
 - navigator
 - screen
 - history
-- cosole
+- console
 
 [BOM对象有哪些？你用过哪些？](https://juejin.cn/post/7116113618550292516#heading-1)
 

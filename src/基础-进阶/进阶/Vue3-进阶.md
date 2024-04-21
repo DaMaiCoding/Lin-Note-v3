@@ -35,7 +35,7 @@ Vue2 是 Options API, Vue3 是 Composition API
 
 
 
-为什么 Vu3 要把 Object.defineProperty 换成 Proxy ？
+为什么 Vue3 要把 Object.defineProperty 换成 Proxy ？
 
 proxy 解决了 Vue2 无法 解决无法监听对象新增属性或删除属性的响应式问题、解决无法监听数组长度和index变化问题, 无法通过下标修改数组元素的问题
 
@@ -930,6 +930,19 @@ npm install less less-loader
 <!-- 使用 src 引入 -->
 <script src='./antd.css' scoped></script>
 ```
+
+
+
+### 覆盖组件默认样式
+
+```scss
+// .hd-grid-item-content 为组件类名
+:deep(.hd-grid-item-content) {
+   padding: 17rpx 16rpx !important;
+}
+```
+
+
 
 
 
@@ -2694,6 +2707,17 @@ app.listen(9999, () => {
 > 上线之后, 可以会把打包后的代码放在 nginx、Tomecat、Apache 上面
 >
 > 所以上线之后, 我们需要再去做一个, 比如 nginx 上的 proxy_pass
+
+
+
+> **javascript中实现跨域的方式总结**
+>
+> - 第一种方式：`jsonp`请求；`jsonp`的原理是利用`<script>`标签的跨域特性，可以不受限制地从其他域中加载资源，类似的标签还有`<img>`.
+> - 第二种方式：`document.domain`；这种方式用在主域名相同子域名不同的跨域访问中 
+> - 第三种方式：`window.name`；`window`的`name`属性有个特征：在一个窗口(window)的生命周期内,窗口载入的所有的页面都是共享一个`window.name`的，每个页面对`window.name`都有读写的权限，`window.name`是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而进行重置
+> - 第四种方式：`window.postMessage`；`window.postMessages`是`html5`中实现跨域访问的一种新方式，可以使用它来向其它的`window`对象发送消息，无论这个`window`对象是属于同源或不同源
+> - 第五种方式：`CORS`；`CORS`背后的基本思想，就是使用自定义的`HTTP`头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功还是应该失败
+> - 第六种方式：`Web Sockets`；`web sockets`原理：在JS创建了`web socket`之后，会有一个`HTTP`请求发送到浏览器以发起连接。取得服务器响应后，建立的连接会使用`HTTP`升级从`HTTP`协议交换为`web sockt`协议
 
 
 

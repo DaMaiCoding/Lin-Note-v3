@@ -31,28 +31,7 @@ class C {
 
 那么，`class B`、`class C` 也需要修改，他们的关系非常混乱，这就是一种**强耦合**
 
-```typescript
-class A {
-  name: string;
-  constructor(name:string) {
-    this.name = "小满";
-  }
-}
 
-class B {
-  a: any;
-  constructor() {
-    this.a = new A().name; // 这里需要改
-  }
-}
-
-class C {
-  a: any;
-  constructor() {
-    this.a = new A().name; // 这里需要改
-  }
-}
-```
 
 为了解决这样的一个问题，我们需要使用一种**依赖注入**的方式来解决
 
@@ -200,5 +179,60 @@ export class UserController {
 
 
 
-## 提供者 `没懂`
+
+
+## Nestjs 如何快速创建接口模块
+
+```shell
+# 创建 module 模块，并创建 module 文件夹
+nest g module user
+
+# 创建控制器，加上 -d 是为了查看 这个条命令干了什么，不会直接创建，直接创建需要把 -d 去掉
+nest g controller user --no-spec -d
+
+# 创建服务
+nest g service user --no-spec
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

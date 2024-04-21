@@ -67,8 +67,75 @@ Proxy 是不是对原始个对象进行监听, 而是去监听原始对象的代
 
 使用 ref、reactive
 
+
+
+核心：
+
+在 vue3 中调用 ref 函数，时会 js 会先 new 一个 class，这个 class 监听了 value 属性的 get 和 set 方法实现了在 get 中收集依赖，在 set 中触发依赖的双向绑定过程
+
+如果需要对传入参数深层监听的话，就需要调用 reactive 方法
+
+```javascript
+// 自定义ref (伪代码不能直接运行，仅用于学习)
+function ref(target) {
+  const result = { // 这里在源码中体现为一个类 RefImpl
+    _value: reactive(target), // target 传给 reactive 方法做响应式处理，如果是对象的话就变成响应式
+    get value () {
+      return this._value
+    },
+    set value (val) {
+      this._value = val
+      console.log('set value 数据已更新, 去更新界面')
+    }
+  }
+
+  return result
+}
+
+// 测试
+const ref = ref(9);
+ref.value = 6;
+
+const ref = ref({a: 4});
+ref.value.a = 6;
+```
+
+
+
+区别：
+
+- reactive参数一般接受 **对象或数组**，是深层次的响应式。ref参数一般接收 **简单数据类型**，若`ref`接收对象为参数，本质上会转变为`reactive`方法
+
+- 在JS中访问ref的值需要手动添加`.value`，访问`reactive`不需要
+
+- reactive 直接赋值对象或者数组会丢失响应式 `res = data`，而 ref 就不会
+
+- 响应式的底层原理都是 `Proxy`
+
+
+
+```javascript
+// reactive 数组对象赋值方法
+
+// 法一
+const state = reactive({
+	arr: []
+})
+state.arr = [1, 2, 3]
+
+// 法二
+const state = ref([])
+state.value = [1, 2, 3]
+
+// 法三
+const arr = reactive([])
+arr.push(...[1, 2, 3])
+```
+
+
+
 ```typescript
-// 定义
+// ref、reactive 的基本使用定义
 const total = ref('Lin')
 const state = reactive({
     lists: [

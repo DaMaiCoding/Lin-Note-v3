@@ -45,6 +45,31 @@ export default navbar([
         link: "Vue3",
       },
       {
+        text: "方案落地",
+        icon: "vue",
+        link: "方案落地",
+      },
+      {
+        text: "数据埋点",
+        icon: "vue",
+        link: "数据埋点",
+      },
+      {
+        text: "微前端",
+        icon: "vue",
+        link: "微前端",
+      },
+      {
+        text: "Template基础模板",
+        icon: "vue",
+        link: "Template基础模板",
+      },
+      {
+        text: "开发环境",
+        icon: "vue",
+        link: "开发环境",
+      },
+      {
         text: "扩展",
         icon: "workingDirectory",
         link: "扩展",
@@ -78,6 +103,11 @@ export default navbar([
         icon: "plugin",
         link: "分类面试题",
       },
+      {
+        text: "核心面试题",
+        icon: "plugin",
+        link: "核心面试题",
+      },
     ],
   },
   {
@@ -91,7 +121,7 @@ export default navbar([
     link: "/经验实践/",
   },
   {
-    text: "V 0.1.0",
+    text: "V 1.0.0",
     // icon: "loop",
     children: [
       {

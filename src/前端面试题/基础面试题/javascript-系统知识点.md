@@ -129,10 +129,6 @@ object、arrary、null、function
 
 
 
-
-
-
-
 **(三)**
 
 **深拷贝 (手写)** 
@@ -856,6 +852,7 @@ zhangsan.sayHi() // zhangsan 对象
 #### 2. 手写用 Promise 加载一张图片
 
 ```javascript
+// 加载函数 ...
 function loading (src) {
     return new Promise(
     	(resolve, reject) => {
@@ -1100,6 +1097,38 @@ let arr1 = [6, 7, 3];
 
 console.log(arr);
 ```
+
+
+
+### sort() 方法
+
+ a - b < 0，那么 a 会被排列到 b 之前     
+
+ a - b = 0，a 和 b 的相对位置不变       
+
+ a - b > 0，那么 b 排列到 a 之前
+
+
+
+> 升序排序 return a - b
+> 降序排序 return b - a
+
+
+
+### Symbol
+
+`Symbol` 本质上是一种唯一标识符，可用作对象的唯一属性名，这样其他人就不会改写或覆盖你设置的属性值。  
+
+
+
+> 注意事项    
+>
+> 1. Symbol值不能与其他类型的值进行运算      
+> 2. Symbol 值不可以和其他类型值进行混合运算,否则会报错      
+> 3. Symbol 值如果想要作为属性名，那就不能再用点运算符，因为点运算符后面跟的总是字符串      
+> 4. 在对象内部使用 Symbol 值作为属性名的时候，必须要将值放在方括号中 
+
+
 
 
 

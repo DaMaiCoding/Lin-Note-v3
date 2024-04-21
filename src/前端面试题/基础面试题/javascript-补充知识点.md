@@ -37,6 +37,8 @@ Map、Set 的主要语法有哪些？
 
 都有的语法是 `add`、`has`、`delete`
 
+Map 有 `get` 方法，Set 没有
+
 
 
 Map 的基本使用
@@ -49,7 +51,7 @@ let map = new Map();
 map.set('Amy','女')
 map.set('liuQi','男')
 
-//是否存在key，存在返回true,反之为false
+//是否存在key，存在返回true, 反之为false
 map.has('Amy') //true
 map.has('amy') //false
 
@@ -260,10 +262,6 @@ document.addEventListener('DOMcontentLoaded', function() {
 
 
 
-
-
-
-
 ## 9. undefined 的三种情况（初级）
 
 变量、对象、数组 只定义了, 未赋值
@@ -296,7 +294,6 @@ document.addEventListener('DOMcontentLoaded', function() {
 ## 12. 会造成内存泄漏的情况（中级）
 
 - `setTimeout`的第⼀个参数使⽤字符串⽽非函数的话，会引发内存泄漏。
-- 闭包
 
 ```javascript
 // setTimeout 的错误使用
@@ -307,20 +304,7 @@ setTimeout( () => {
 }, 1000)
 ```
 
-```javascript
-// 闭包的简单实现
-function f1() {
-    let a = 0
-    return function () {
-        a += 1
-        console.log(a)
-    }    
-}
-
-let fn = f1()
-fn() // 1
-fn() // 2
-```
+> [前端常见内存泄漏及解决方案](https://juejin.cn/post/7065705130963763231#heading-3)
 
 
 
@@ -335,12 +319,12 @@ let fn = function(){
     }
 }
 fn1 = fn() 
-fn1()   //1
-fn1()   //2
-fn1()   //3
+fn1()   // 1
+fn1()   // 2
+fn1()   // 3
 fn1 = null // fn1的引用fn被手动释放了
-fn1=fn()  //num再次归零
-fn1() //1
+fn1=fn()  // num再次归零
+fn1() // 1
 ```
 
 
@@ -349,17 +333,17 @@ fn1() //1
 
 `typeof`与`instanceof`都是判断数据类型的方法，区别如下：
 
-- `typeof`会返回一个变量的基本类型，`instanceof`返回的是一个布尔值
+- `typeof ` 会返回一个变量的基本类型，`instanceof`返回的是一个布尔值
 
 - `instanceof` 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型
 
-- 而`typeof` 也存在弊端，它虽然可以判断基础数据类型（`null` 除外），但是引用数据类型中，除了`function` 类型以外，其他的也无法判断
+- 而 `typeof` 也存在弊端，它虽然可以判断基础数据类型（`null` 除外），但是引用数据类型中，除了 `function` 类型以外，其他的也无法判断
 
   
 
 可以看到，上述两种方法都有弊端，并不能满足所有场景的需求
 
-如果需要通用检测数据类型，可以采用`Object.prototype.toString`，调用该方法，统一返回格式`“[object Xxx]”`的字符串
+如果需要通用检测数据类型，可以采用 `Object.prototype.toString`，调用该方法，统一返回格式`“[object Xxx]”`的字符串
 
 
 
@@ -422,9 +406,12 @@ function getInfo() {
 }
 
 getInfo() // Uncaught ReferenceError: Cannot access 'randomValue' before initialization
+
+console.log(value)
+const value = 21 // ReferenceError: value is not defined
 ```
 
-为什么会这样，因为 let const 与 var 有类似的 “变量提升”，但是 var 不同的是其执行上下文的创建阶段，只会创建变量，而不会被初始化 (即定义为 `ndefined`)
+为什么会这样，因为 let const 与 var 有类似的 “变量提升”，但是 var 不同的是其执行上下文的创建阶段，只会创建变量，而不会被初始化 (即定义为`undefined`)
 
 并且 ES6 规定了其初始化过程中是执行上下文的执行阶段才被初始化，未被初始化，会报错 (`initialization`)
 
@@ -447,9 +434,26 @@ const a = 322
 // Uncaught SyntaxError: Identifier 'a' has already been declared
 ```
 
-var 可以重复声明，而 let const 重复声明会报（已经变量已经声明）的错误！
+var 可以重复声明，而 let、const 重复声明会报（已经变量已经声明）的错误！
 
 
+
+**[特殊]**
+
+浏览器控制的输出
+
+```javascript
+// 会不符合，直接代码执行的不同
+let p = 233
+// undefined
+let p = 322
+// undefined
+
+// 但是 如果连续定义就会报错
+let p = 233
+let p = 322
+// Uncaught SyntaxError: Identifier 'p' has already been declared
+```
 
 
 
@@ -550,13 +554,29 @@ function isEqual(obj1, obj2) {
 
 
 
-
-
 ## 21. split() 和 join() 的区别
 
+Split() 方法是切割成数组的形式
+
+Join()  方法是将数组转换成字符串
 
 
 
+join()：方法用于把数组中的所有元素放入一个字符串
+
+指定分隔符方法 join("#")，其中 # 可以是任意
+
+```javascript
+['a','b','c'].join('#') // 'a#b#c'
+```
+
+
+
+split()方法：用于把一个字符串分割成字符串数组，stringObject.split(a,b) 这是它的语法
+
+```javascript
+'a#b#c'.split('#') // ['a', 'b', 'c']
+```
 
 
 
@@ -1800,6 +1820,7 @@ console.log(typeof New String('aaa')) // object
 ```javascript
 let arr = []
 console.log(arr instanceof Array) // true
+
 ```
 
 
@@ -1820,7 +1841,7 @@ Object.prototype.toString.call(1) // '[object Number]'
 
 ```javascript
 let arr = [];
-console.log(arr.constructor == Array) // true
+console.log(arr.constructor === Array) // true
 ```
 
 
@@ -1935,7 +1956,7 @@ export const sum = (a, b) => a + b;
 
 
 
-`import`命令是编译阶段执行的，在代码运行之前。因此这意味着被导入的模块会先运行，而导入模块的文件会后执行
+`import` 命令是编译阶段执行的，在代码运行之前。因此这意味着被导入的模块会先运行，而导入模块的文件会后执行
 
 
 
@@ -1943,33 +1964,136 @@ export const sum = (a, b) => a + b;
 
 
 
+## 66. Object.is
+
+```javascript
+console.log(Object.is('1', 1));
+// Expected output: false
+
+console.log(Object.is(NaN, NaN));
+// Expected output: true
+
+console.log(Object.is(-0, 0));
+// Expected output: false
+
+const obj = {};
+console.log(Object.is(obj, {}));
+// Expected output: false
+```
 
 
 
+## 67. Array.prototype.slice.call(arguments)
+
+将函数传入的参数转换为数组对象
 
 
 
+## 68. ES6的模块 与 CommonJS的模块 的异同
+
+**使用示例**
+
+```javascript
+/* E6模块使用 test.mjs */
+export let name = '答案cp3'
+ 
+// index.mjs
+import { name } from './test.mjs'
+```
+
+```javascript
+/* commonjs 模块使用 */
+//a.js
+exports.action = function(){
+    console.log('Action!');
+}
+
+//b.js
+const a = require('./a.js')
+a.action();
+```
 
 
 
+**区别：**
+
+1. ES6的模块是`编译`时加载，CommonJS是`运行`时加载
+2. ES6的模块是`异步`加载，CommonJS是`同步`加载
+3. ES6的模块是 `引用`，CommonJS 是对模块的`浅拷贝`
 
 
 
+**相同：**
+
+1. ES6的模块 与 CommonJS的模块 都可以对引入的对象属性进行赋值
 
 
 
+## 69. ES6中 双冒号 代替 bind、call、apply
+
+```javascript
+foo::bar // 等同于 bar.bind(foo)
+foo::bar(...arguments) // 等同于 bar.apply(foo, arguments)
+```
 
 
 
+## 70. arguments 与 ES6 Rest 剩余参数的区别
+
+```javascript
+// arguments 用法
+function fn1(a, b, c) {
+  	console.log(arguments[0])
+  	console.log(arguments[1])
+  	console.log(arguments[2])
+}
+fn1(1, 2, 3) // 1 2 3
+
+// Rest 剩余参数 用法
+function fn2(...params) {
+    console.log(params)
+}
+fn2(1, 2, 3) // [1, 2, 3]
+```
 
 
 
+## 71. 获取对象 key 的方法，及区别
+
+```javascript
+// 获取 Symbol类型 做为对象 key
+let name = Symbol('name');
+let product = {
+    [name]: "洗衣机",
+    "price": 799
+}
+Reflect.ownKeys(product) // ['price', Symbol(name)]
+Object.keys(product) // ['price']
+```
 
 
 
+结论：
+
+`Object.keys()` 返回属性 key，但不包括不可枚举的属性
+
+`Reflect.ownKeys()` 返回所有属性 key
 
 
 
+## 72. Number 的操作方法有哪些？
+
+`Math.round()` 四舍五入，返回一个四舍五入之后的整数
+
+`Math.floor()` 向下取整，直接舍去小数部分
+
+`Math.ceil()` 向上取整，小数部分直接舍去，并向正数部分进 1
+
+`parseInt(string, radix)` 如果 radix 为空，默认转换为 10 进制》
+
+
+
+> Number 中没有 `split` 方法
 
 
 

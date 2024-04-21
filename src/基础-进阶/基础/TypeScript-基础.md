@@ -235,6 +235,12 @@ enum Color {
     green,
     blue
 }
+// 编译后的结果
+let Color {
+    red: 0,
+    green: 1,
+    blue: 2
+}
 // 枚举类型使用
 let color = Color.blue
 console.log(color) // 2
@@ -908,13 +914,19 @@ point.drawPoint()
 
 
 
-扩展
+**Interface (接口) 与 Class (类，也可以当做接口来用) 的区别**
 
-JavaScript 的 构造函数 与其他语言的不同？
+- 
 
-JavaScript 的 构造函数 不可以重载 overload, 也就是说一个类有且仅有一个 constructor
 
-而我们给 构造函数 加上？, 或设置默认值, 就相当于变相重载构造函数了
+
+> **[扩展]**
+>
+> JavaScript 的 构造函数 与其他语言的不同？
+>
+> JavaScript 的 构造函数 不可以重载 overload, 也就是说一个类有且仅有一个 constructor
+>
+> 而我们给 构造函数 加上？, 或设置默认值, 就相当于变相重载构造函数了
 
 
 
@@ -1159,6 +1171,30 @@ type numOrFun = Second | getName  // 联合类型
 ```
 
 
+
+#### 函数重载
+
+简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法
+
+```typescript
+// 函数重载
+function handleData(x: string): string[]
+
+function handleData(x: number): string
+
+function handleData(x: boolean): null
+
+function handleData(x: any): any {
+  if(typeof x === "string") {
+		return x.split("")
+  } else {
+    return x.toString().split("").join("_")
+  }
+}
+
+console.log(handleData("abc").join("_")) // a_b_c
+console.log(handleData(123)) // 1_2_3
+```
 
 
 
@@ -1518,7 +1554,7 @@ console.log(man.next());
 // 2. set map
 let set: Set<number> = new Set([1, 1, 2, 2, 3, 3]) // 天然去重
 
-let map:Map<any,any> = new Map()
+let map: Map<any,any> = new Map()
 
 // Map 与 对象的区别就是 Map 的 key 可以使用引用类型
 let Arr = [1, 2, 3]

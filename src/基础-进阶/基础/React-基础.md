@@ -295,7 +295,7 @@ return (
 
 
 
-### 函数传递 额外参数
+### JSX 函数传递 额外参数
 
 ```react
 const fn = (event: MouseEvent<HTMLButtonElement>, name: string) => {
@@ -819,6 +819,28 @@ React16 以后，React 推崇 函数组件 和 Hooks
 组件是一个函数（执行放回 JSX 片段），组件初次渲染执行这个函数
 
 任何 state 更新，都会触发组件的更新（重新执行函数）
+
+
+
+### Props.children
+
+Props.children 类似于 Vue 中的 `slot` 插槽
+
+```react
+// 父组件
+return (
+  <Child>
+      <span>{ 'child node' }</span>
+   </Child>
+ )
+
+// 子组件
+return (
+  <div>
+    { props.children }
+  </div>
+)
+```
 
 
 
@@ -1522,9 +1544,9 @@ export default Demo
 
 **[注]**
 
-关于 div`` 这个语法的解释
+关于 `div` 这个语法的解释
 
-div`` 类似一个函数执行
+`div` 类似一个函数执行
 
 ```tsx
 const Container = styled.div`
@@ -1533,6 +1555,81 @@ const Container = styled.div`
 ```
 
 可以看到 类似函数的调用，但是返回的是一个数组，且有一些属性信息
+
+
+
+### 关于 flex 布局的写法
+
+三列布局，两变固定大小，中间自适应
+
+外层可以用 `display: flex`
+
+中间层可以用 `flex: auto`
+
+为了不让 中间 和 左右因为缩放被挤压，可以设置最小宽高 `min-width`、`min-height`
+
+
+
+三列布局 按比例划分 3份, 中间 2 份，左右各一份
+
+可以使用中间 `flex: 2`
+
+左右使用 `flex: 1`
+
+
+
+### class 类有 横杠 如何写入 className
+
+```tsx
+<div className={styles['component-wrapper']}>
+  <div className={styles.component}>
+    <QuestionInput placeholder={''} />
+  </div>
+</div>
+```
+
+
+
+### 多个 className
+
+```react
+// 动态判断添加单类名
+<div className={detail.applyStatus == 1 ? styles.class : styles.class2 }>HELLO WORLD</div>
+ 
+// 已有多类名，动态判断再添加类名
+// ( 数组法)
+<div className{[classA,'box',index===this.state.currentState?"active":null].join('')}>HELLO WORLD</div>
+
+// （模板字符串法）
+<div className={`box${classA}${index===this.state.currentState?"active":null}`}>HELLO WORLD</div>
+```
+
+
+
+
+
+### 一些特殊属性
+
+```scss
+// 屏蔽鼠标行为，组件不让被点击到
+.component {
+  pointer-events: none; 
+}
+
+// 动画 暂停 与 恢复
+.container {
+  animation: rotate 20s linear infinite;
+  animation-play-state: paused;
+}
+
+.container: hover {
+  animation-play-state: running;
+}
+```
+
+
+
+
 
 
 
@@ -2036,6 +2133,83 @@ const CountReducer: FC = () => {
 
 export default CountReducer
 ```
+
+
+
+## Redux
+
+### Redux 单向数据流
+
+![Redux data flow diagram](https://cn.redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif)
+
+
+
+### 相关插件的使用
+
+`react-redux` 用于状态管理的基本功能
+
+`redux-undo` 状态管理中用于实现 撤销、恢复功能
+
+`@reduxjs/toolkit` 配套 `react-redux` 用于状态管理
+
+
+
+## 关于 react 中 hooks 的命名
+
+### useLoad 开头
+
+通常用于 ajax 请求获取数据
+
+
+
+### useGet 开头
+
+通常用于获取前端 redux 信息
+
+
+
+## 文件中 引入的先后顺序
+
+### 顺序
+
+第三方插件往前面放，自定义插件往后面放
+
+```typescript
+// 第三方插件
+import React from 'react'
+import { createBrowserRouter } from 'react-router-dom'
+
+// 自定义插件 (hook)
+import MainLayout from '../layouts/MainLayout'
+import ManageLayout from '../layouts/ManageLayout'
+import QuestionLayout from '../layouts/QuestionLayout'
+import Home from '../pages/Home'
+import Login from '../pages/Login'
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -31,6 +31,16 @@ option + shift + A
 
 
 
+有趣注释
+
+`ctrl + shift + p`
+
+输入 `code` 就可以搜索到很多有趣的注释了
+
+![image-20230620183955272](./assets/vscode-插件使用/image-20230620183955272.png)	
+
+
+
 ## 打印插件 Turbo Console Log
 
 选中 要打印的变量 `Ctrl + Alt + L`
@@ -57,3 +67,10 @@ option + shift + A
 npm run lint --fix
 ```
 
+
+
+## 图表绘制插件
+
+`Draw.io Integration`
+
+安装完成后，创建 `.dio` 、`.drawio` 或`.drawio.png` 文件，就可以进行绘制图画了 

@@ -101,7 +101,7 @@ npm init vite-app <project-name> //npm init vite-app vue3-vite-demo
 进入文件夹中
 
 ```shell
-cd vvue3-vite-demo
+cd vue3-vite-demo
 ```
 
 安装依赖
@@ -109,6 +109,14 @@ cd vvue3-vite-demo
 ```shell
 npm install
 ```
+
+启动
+
+```shell
+npm run dev
+```
+
+
 
 
 
@@ -250,7 +258,7 @@ module.exports = {
 
 
 
-6. 重新启动扩展数组, 让 `eslint` 工作, 按 `Ctrl + Shift + P` 打开控制面板, 输入 `restart`, 选择重启扩展宿主
+6. 重新启动扩展宿主, 让 `eslint` 工作, 按 `Ctrl + Shift + P` 打开控制面板, 输入 `restart`, 选择重启扩展宿主
 
 ![image-20230305214547292](./assets/image-20230305214547292.png)	
 

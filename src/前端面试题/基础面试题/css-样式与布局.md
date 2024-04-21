@@ -142,25 +142,287 @@ if (window.devicePixelRatio && devicePixelRatio >= 2) {
 
 ## 3. CSS 高级语法的应用
 
-主题切换
+### 主题切换
 
-- 使用 css var
+- 使用 css 变量
 
 ```css
-html {
+/* 习惯性写法 写在根元素上，等同于写 html 上，因为 :root 就是 html文档的另一种写法罢了 */
+:root {
     --color: #333;
 }
-html .black {
-    --color: #fff;
+
+html {
+   --color: #333;
 }
+
+/* 也可以写在 body 上，也能生效，但是权重没 html、:root 高 */
+body {
+   --color: #333;
+}
+
+/* 使用 var 应用 css 变量 */
 p {
     color: var(--color);
 }
 ```
 
+- 使用 sass 变量
+
+```scss
+/* 普通定义 */
+$sysColor: red;
+
+p {
+  color: $sysColor;
+}
+
+/* 全局定义，使用关键字 !global */
+/* 在任意位置定义全局变量，任何地方都调用 */
+/* 如果和普通变量重名，会覆盖普通变量 */
+.contetnt {
+  $sysColor: grenn !global;
+}
+
+.container {
+  color: $sysColor; // green
+}
+```
+
+- 使用 less 变量
+
+```less
+/* 变量定义 */
+@sys-color: red;
+
+p {
+  color: @sys-color;
+}
+```
 
 
-计算属性
+
+每一种变量在实际开发中的运用
+
+**动态**改变**背景颜色**与**字体颜色**，在 vue、react 中的运用
+
+
+
+vue 中的使用
+
+创建项目
+
+```shell
+npm init vite-app vue-css
+cd vue-css
+npm install
+npm run dev
+```
+
+
+
+1. css 变量
+
+```vue
+<!-- App.vue -->
+<template>
+  <div ref="root" class="container" @click="changeColor"></div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const root = ref<any>(null)
+
+/* 改变颜色 */
+const changeColor = () => {
+  root.value.style.setProperty('--color', 'green')
+}
+
+</script>
+
+
+<style>
+
+/* 注意不要加 scoped，不然会导致 :root 中定义 css 属性将会失效 */
+:root {
+  --color: blue;
+}
+
+.container {
+  width: 100px;
+  height: 100px;
+  background-color: var(--color);
+}
+</style>
+```
+
+
+
+**注意不要加 scoped，不然会导致 :root 中定义 css 属性将会失效**
+
+加了 scoped
+
+![image-20240411001304264](./assets/css-样式与布局/image-20240411001304264.png)
+
+![image-20240411001409465](./assets/css-样式与布局/image-20240411001409465.png)	
+
+
+
+没加 scoped
+
+![image-20240411001522972](./assets/css-样式与布局/image-20240411001522972.png)	
+
+![image-20240411001613582](./assets/css-样式与布局/image-20240411001613582.png)	
+
+
+
+scoped 的作用是实现组件私有化，当前模块样式不对全局样式进行污染，表示当前 style 属性只属于当前模块
+
+而 `:root` 是直接修改 根元素属性，也就无法生效了
+
+
+
+2. sass 变量
+
+修改样式的原理还是使用 `setProperty` 修改 css 变量来间接修改 sass变量
+
+``` vue
+<template>
+  <div ref="root" class="container" @click="changeColor"></div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const root = ref<any>(null)
+
+/* 改变颜色 */
+const changeColor = () => {
+  root.value.style.setProperty('--color', 'green')
+}
+
+</script>
+
+
+<style scoped lang="scss">
+
+/* var(设置值，默认值)，没有设置值就使用默认值 */
+$sysColor: var(--color, red);
+
+.container {
+  width: 100px;
+  height: 100px;
+  background-color: $sysColor;
+}
+
+</style>
+```
+
+
+
+3. less 变量
+
+```vue
+<template>
+  <div ref="root" class="container" @click="changeColor"></div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+const root = ref<any>(null)
+
+/* 改变颜色 */
+const changeColor = () => {
+  root.value.style.setProperty('--color', 'green')
+}
+
+</script>
+
+
+<style scoped lang="less">
+
+/* var(设置值，默认值)，没有设置值就使用默认值 */
+@sysColor: var(--color, red);
+
+.container {
+  width: 100px;
+  height: 100px;
+  background-color: @sysColor;
+}
+
+</style>
+```
+
+
+
+小结
+
+定义变量区别
+
+```css
+/* css */
+:root {
+  --color: blue;
+}
+
+.container {
+  width: 100px;
+  height: 100px;
+  background-color: var(--color);
+}
+```
+
+```scss
+/* sass */
+$sysColor: var(--color, red);
+
+.container {
+  width: 100px;
+  height: 100px;
+  background-color: $sysColor;
+}
+```
+
+```less
+/* less */
+@sysColor: var(--color, red);
+
+.container {
+  width: 100px;
+  height: 100px;
+  background-color: @sysColor;
+}
+```
+
+改变样式的核心，修改 css 变量
+
+```typescript
+/* 改变颜色 */
+const changeColor = () => {
+  root.value.style.setProperty('--color', 'green')
+}
+```
+
+
+
+react 中使用
+
+
+
+
+
+
+
+
+
+
+
+总结（表格）
+
+
+
+
+
+### 计算属性
 
 - calc
 
@@ -217,7 +479,11 @@ p {
 
 
 
+**css选择器优先级计算方法**
 
+查看每个级别优先级的数量，就能判断优先级高低
+
+![image-20240221145329117](./assets/css-样式与布局/image-20240221145329117.png)	
 
 
 
@@ -614,6 +880,14 @@ left，right，top，bottom为0，maigin：auto
     white-space: nowrap;
     overflow: hidden;
 }
+
+/* 当行省略 */
+.singe-line {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: nowrap;
+}
 ```
 
 
@@ -750,7 +1024,7 @@ BFC 的作用: 内部元素 不影响 外部元素
 
 ### BFC 解决了什么问题 (或者说应用场景)
 
-1. 清除浮动, 解决高度塌陷问题
+1. 清除浮动, 解决高度塌陷问题（父元素没设置高度，子元素设置浮动，导致父元素高度为 0）
 2. 解决 上下 margin 合并问题
 3. 元素被浮动元素覆盖的问题
 
@@ -761,6 +1035,139 @@ BFC 的作用: 内部元素 不影响 外部元素
 [BFC(边距重叠解决方案) ](https://juejin.cn/post/7029622804739784717)
 
 [面试官：请说说什么是BFC？大白话讲清楚](https://juejin.cn/post/6950082193632788493#heading-1)
+
+
+
+## 24. flex 布局
+
+
+
+### 均匀布局
+
+`flex-grow: 1` 实现均匀布局原理
+
+将子元素剩余宽度，按比例进行分配，三个子元素`flex-grow` 都为 1，就是每个子元素都占 1/3
+
+
+
+### 基本情况
+
+```vue
+<template>
+  <div class="flex" style="width: 600px; height: 200px">
+  	<div class="flex1" style="background-color: red"></div>
+    <div class="flex1" style="background-color: blue"></div>
+    <div class="flex1" style="background-color: yellow"></div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+    .flex {
+        display: flex;
+    }
+    .flex1 {
+        flex-grow: 1;
+    }
+</style>
+```
+
+
+
+三个子 `div` 没有设计宽度的情况的下，设置`flex-grow: 1` ，那么都是三个都会均分剩余宽度，那个结果就是三个均分父元素宽度
+
+![image-20240410105414388](./assets/css-样式与布局/image-20240410105414388.png)	
+
+![image-20240410111939723](./assets/css-样式与布局/image-20240410111939723.png)	
+
+
+
+### 其中某元素有宽度
+
+```vue
+<template>
+  <div class="flex" style="width: 600px; height: 200px">
+  	<div class="flex1" style="width: 300px; background-color: red;"></div>
+    <div class="flex1" style="background-color: blue;"></div>
+    <div class="flex1" style="background-color: yellow;"></div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+    .flex {
+        display: flex;
+    }
+    .flex1 {
+        flex-grow: 1;
+    }
+</style>
+```
+
+其中一个元素有宽度 `300px`，那么 `flex-grow: 1` 就会将剩余的 `300px`，均分给三个子元素，也就是 `400px 100px 100px`
+
+![image-20240410110824949](./assets/css-样式与布局/image-20240410110824949.png)
+
+![image-20240410112232373](./assets/css-样式与布局/image-20240410112232373.png)	
+
+
+
+### 解决办法
+
+为了解决这个问题，加入属性 `flex-basis: 0`
+
+`flex-basis` 指定了 flex 元素在主轴方向上的初始大小
+
+```vue
+<template>
+  <div class="flex" style="width: 600px; height: 200px">
+  	<div class="flex1 flex-basis-0px" style="width: 300px; background-color: red;"></div>
+    <div class="flex1 flex-basis-0px" style="background-color: blue;"></div>
+    <div class="flex1 flex-basis-0px" style="background-color: yellow;"></div>
+  </div>
+</template>
+
+<style scoped lang="scss">
+    .flex {
+        display: flex;
+    }
+    .flex1 {
+        flex-grow: 1;
+    }
+    .flex-basis-0px {
+        flex-basis: 0
+    }
+</style>
+```
+
+那么这样设置后，每个子元素主轴方向上的初始大小都是 0，不会收 `width` 已经子元素内容，影响整体布局
+
+![image-20240410111939723](./assets/css-样式与布局/image-20240410111939723.png)	
+
+
+
+## 25. 图片固定宽高比
+
+只设置宽度，不设置高度的情况，如何让图片固定宽高比
+
+```css
+{
+    width: 100px;
+    aspect-ratio: 4/3;
+}
+
+/* 浏览器解析结果 */
+{
+    width: 100px;
+    height; 75px;
+}
+```
+
+
+
+
+
+
+
+
 
 
 
