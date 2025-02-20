@@ -21,7 +21,7 @@ features:
     icon: note
     details: 超级好用的 Leetcode 算法笔记
     link: https://github.com/afatcoder/LeetcodeTop
-footer: "Apache-2.0 Licensed | Copyright © 2023
+footer: "Apache-2.0 Licensed | Copyright © 2025
   <br>
   <a href='https://beian.miit.gov.cn' target='_blank' style='color: var(--c-text-lighter);'>粤ICP备2023096639号-1</a>"
 footerHtml: true
