@@ -15,7 +15,7 @@ export default hopeTheme({
 
   iconAssets: "iconfont",
 
-  repo: "Jackie-Lin/Lin-Note-v3",
+  repo: "DaMaiCoding/DaMaiCoding-Note",
 
   docsDir: "src",
 

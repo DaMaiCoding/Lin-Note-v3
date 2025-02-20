@@ -3,7 +3,7 @@ home: true
 icon: home
 title: 主页
 heroImage: /logo.png
-heroText: Lin-Note
+heroText: DaMaiCoding-Note
 tagline: 一站式前端内容网站，包括学习路线、知识体系
 actions:
   - text: 开始阅读

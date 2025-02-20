@@ -3,11 +3,11 @@ import { docsearchPlugin } from "@vuepress/plugin-docsearch";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  base: "/Lin-Note-v3/", // 用于打包到 github action
+  base: "/DaMaiCoding-Note/", // 用于打包到 github action
   // base: "/", // 这里是要打包到服务器上的配置
   lang: "zh-CN",
-  title: "Lin-Note",
-  description: "Lin-Note 的个人博客",
+  title: "DaMaiCoding-Note",
+  description: "DaMaiCoding-Note 的个人博客",
   head: [["link", { rel: "icon", href: "/icon.png" }]],
   plugins: [
     docsearchPlugin({

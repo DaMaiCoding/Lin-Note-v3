@@ -105,8 +105,13 @@ export default navbar([
       },
       {
         text: "核心面试题",
-        icon: "plugin",
+        icon: "file",
         link: "核心面试题",
+      },
+      {
+        text: "2025前端最新面试题",
+        icon: "free",
+        link: "2025前端最新面试题",
       },
     ],
   },
@@ -121,7 +126,7 @@ export default navbar([
     link: "/经验实践/",
   },
   {
-    text: "V 1.0.0",
+    text: "V 1.2.0",
     // icon: "loop",
     children: [
       {
@@ -132,7 +137,7 @@ export default navbar([
       {
         text: "更新日志",
         icon: "diagram",
-        link: "https://github.com/Jackie-Lin/Lin-Note-v3",
+        link: "https://github.com/DaMaiCoding/DaMaiCoding-Note",
       },
     ],
   },
